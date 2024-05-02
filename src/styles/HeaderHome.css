@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sedan:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Platypi:ital,wght@0,300..800;1,300..800&family=Sedan:ital@0;1&display=swap');
+header{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 5px;
+    /* background-color:rgba(0, 0, 0, 0.075); */
+ }
+ 
+ .logo{
+     background-color: transparent;
+     font-weight: 600;
+     font-size: 2.4rem;
+     padding-left: 15vh;
+     padding-right: 10vh;
+     padding-top: 1.5vh;
+    
+ 
+ }
+ .imglogo{
+    width: 16vh;
+    height: 16vh;
+    transition: .8s;
+ }
+ .imglogo:hover{
+    transform: translateY(-0.5vh);
+   
+ }
+ .navbar{
+     display: flex;
+     padding-right: 100px;
+     list-style: none;
+ }
+ .navbar a{
+     color:#ffff;
+     font-size: 1.1rem;
+     padding: 10px 20px;
+     font-weight: 500;
+     font-family: Platypi;  
+ }
+ .navbar li{
+    transition: .8s; 
+ }
+ .navbar li:hover{
+    transform: translateY(-1vh);
+    scale: 1.2;
+ }
+ /* .navbar a:hover{
+     transition: .4s;
+     color: #ffff;
+     background-color:#ffff;
+     border-radius: 10px;
+ }
+ .navbar li:hover{
+     transition: .4s;
+     transform: scale(1.1);
+     color: #ffff;
+     background-color:#ffff;
+     border-radius: 10px;
+ } */
+ 
+ #menu-icon{
+     font-size: 2rem;
+     cursor: pointer;
+     display: none;
+ }
