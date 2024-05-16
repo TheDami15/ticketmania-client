@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useCarousel, fetchEvents } from '../services/BodyHomeServices';
 import '../styles/BodyHome.css';
+import { isLoggedIn } from '../utils/auth';
 
 const BodyHome = () => {
     const { carouselRef, showSlider } = useCarousel();
@@ -22,8 +23,8 @@ const BodyHome = () => {
         loadEvents();
     }, []);
 
-if (loading) return <p>Loading...</p>;
-if (error) return <p>{error}</p>;
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>{error}</p>;
 
     return (
         <div className="carousel" ref={carouselRef}>
@@ -38,7 +39,11 @@ if (error) return <p>{error}</p>;
                             <div className="des">{event.description}</div>
                             <div className="buttons">
                                 <button>SEE MORE</button>
-                                <button>LOG IN</button>
+                                {isLoggedIn() ? (
+                                    <button>USER</button> // Show this if logged in
+                                ) : (
+                                    <button>LOG IN</button> // Show this if not logged in
+                                )}
                             </div>
                         </div>
                     </div>
@@ -52,8 +57,8 @@ if (error) return <p>{error}</p>;
                 ))}
             </div>
             <div className="arrows">
-                <button id="prev">&lt;</button> 
-                <button id="next">&gt;</button> 
+                <button id="prev">&lt;</button>
+                <button id="next">&gt;</button>
             </div>
             <div className="time"></div>
         </div>
