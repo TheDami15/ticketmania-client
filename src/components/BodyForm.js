@@ -1,44 +1,57 @@
-import React, { useState, useEffect  } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { login, register } from '../services/BodyFormServices'; // Import the register service
 
 import '../styles/BodyForm.css';
+
 const BodyForm = () => {
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
-    const [success, setSuccess] = useState(false);
+    const [success, setSuccess] = useState(null);
     const [isLoginActive, setIsLoginActive] = useState(true); // State for managing login/registration form toggle
+
+    const navigate = useNavigate(); // Initialize navigate
 
     const handleLogin = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, password }),
-            });
+            await login(email, password); // Call the login service
 
-            if (!response.ok) {
-                throw new Error('Error al iniciar sesión');
-            }
+            setSuccess('¡Inicio de sesión exitoso!');
+            setError(null);
 
-            const data = await response.json();
-            localStorage.setItem('token', data.token); // Guardar el token en el almacenamiento local
-
-            // Realizar acciones adicionales, como redirigir al usuario a otra página
-            setSuccess(true);
-            setError(null); // Resetear cualquier mensaje de error anterior
-            alert("funcionó"); 
+            navigate('/'); // Navigate to the home route
         } catch (error) {
             setError("Error al iniciar sesión");
-            setSuccess(false); // Resetear el estado de éxito
+            setSuccess(null);
         }
     };
-    useEffect(() => {
-        console.log("Error: ", error); // Log the value of 'success' after it has been updated
-    }, [success]); // Run this effect whenever 'success' changes
+
+    const handleRegister = async (e) => {
+        e.preventDefault();
+
+        try {
+            await register(name, email, password); // Call the register service
+
+            setSuccess('¡Registro exitoso! Redirigiendo...');
+            setError(null);
+
+            navigate('/'); // Navigate to the home route
+        } catch (error) {
+            setError("Error al crear usuario");
+            setSuccess(null);
+        }
+    };
+
+    const toggleForm = (isLogin) => {
+        setIsLoginActive(isLogin);
+        setError(null);
+        setSuccess(null);
+    };
+
     return (
         <div className='forma'>
             <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
@@ -47,7 +60,7 @@ const BodyForm = () => {
                     <div className="info-childs">
                         <h2>Bienvenido</h2>
                         <p>Para unirte a nuestra comunidad por favor Inicia Sesión con tus datos</p>
-                        <input type="button" value="Iniciar Sesión" onClick={() => setIsLoginActive(true)}></input>
+                        <input type="button" value="Iniciar Sesión" onClick={() => toggleForm(true)}></input>
                     </div>
                 </div>
                 <div className="form-information">
@@ -59,29 +72,30 @@ const BodyForm = () => {
                             <i className='bx bxl-linkedin' ></i>
                         </div>
                         <p>o usa tu email para registrarte</p>
-                        <form className="form form-register" novalidate>
+                        <form className="form form-register" onSubmit={handleRegister} noValidate>
                             <div>
                                 <label>
                                     <i className='bx bx-user' ></i>
-                                    <input type="text" placeholder="Nombre Usuario" name="userName" ></input>
+                                    <input type="text" placeholder="Nombre Usuario" value={name} onChange={(e) => setName(e.target.value)} name="userName" required />
                                 </label>
                             </div>
                             <div>
                                 <label >
                                     <i className='bx bx-envelope' ></i>
-                                    <input type="email" placeholder="Correo Electronico" name="userEmail" ></input>
+                                    <input type="email" placeholder="Correo Electrónico" value={email} onChange={(e) => setEmail(e.target.value)} name="userEmail" required />
                                 </label>
                             </div>
                             <div>
                                 <label>
                                     <i className='bx bx-lock-alt' ></i>
-                                    <input type="password" placeholder="Contraseña" name="userPassword"></input>
+                                    <input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} name="userPassword" required />
                                 </label>
                             </div>
-
-                            <input type="submit" value="Registrarse"></input>
-                            <div className="alerta-error">Todos los campos son obligatorios</div>
-                            <div className="alerta-exito">Te registraste correctamente</div>
+                            <input type="submit" value="Registrarse" />
+                            {/* Mensaje de error */}
+                            {error && <div className="alerta-error">{error}</div>}
+                            {/* Mensaje de éxito */}
+                            {success && <div className="alerta-exito">{success}</div>}
                         </form>
                     </div>
                 </div>
@@ -93,7 +107,7 @@ const BodyForm = () => {
                     <div className="info-childs">
                         <h2>¡¡Bienvenido nuevamente!!</h2>
                         <p>Para unirte a nuestra comunidad por favor Inicia Sesión con tus datos</p>
-                        <input type="button" value="Registrarse" onClick={() => setIsLoginActive(false)}></input>
+                        <input type="button" value="Registrarse" onClick={() => toggleForm(false)}></input>
                     </div>
                 </div>
                 <div className="form-information">
@@ -118,19 +132,18 @@ const BodyForm = () => {
                                     <input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} name="userPassword" required />
                                 </label>
                             </div>
+                            <input type="submit" value="Iniciar Sesión" />
                             {/* Mensaje de error */}
                             {error && <div className="alerta-error">{error}</div>}
                             {/* Mensaje de éxito */}
-                            {success && <div className="alerta-exito">¡Inicio de sesión exitoso!</div>}
-
-                            <input type="submit" value="Iniciar Sesión" />
+                            {success && <div className="alerta-exito">{success}</div>}
                         </form>
 
                     </div>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default BodyForm
+export default BodyForm;
