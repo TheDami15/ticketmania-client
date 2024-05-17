@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useCarousel, fetchEvents } from '../services/BodyHomeServices';
 import '../styles/BodyHome.css';
+import { Link } from 'react-router-dom';
 import { isLoggedIn } from '../utils/auth';
 
 const BodyHome = () => {
@@ -38,11 +39,11 @@ const BodyHome = () => {
                             <div className="author">{new Date(event.createdAt).toLocaleDateString()}</div>
                             <div className="des">{event.description}</div>
                             <div className="buttons">
-                                <button>SEE MORE</button>
+                            <button><Link to="/cardticket">SEE MORE</Link></button>
                                 {isLoggedIn() ? (
-                                    <button>USER</button> // Show this if logged in
+                                    <button><Link to="/myticket">My Ticket</Link></button> // Show this if logged in
                                 ) : (
-                                    <button>LOG IN</button> // Show this if not logged in
+                                    <button><Link to="/form">LOG IN</Link></button> // Show this if not logged in
                                 )}
                             </div>
                         </div>

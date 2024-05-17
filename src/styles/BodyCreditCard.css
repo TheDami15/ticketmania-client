@@ -1,0 +1,280 @@
+@import url('https://fonts.googleapis.com/css2?family=Platypi:ital,wght@0,300..800;1,300..800&family=Sedan:ital@0;1&display=swap');
+
+*,::before,::after{
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+}
+.site{
+    height: 100vh;
+    font-family: 'Platypi', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: black;
+    /* background: #5e5050; */
+    background-image: url(../img/shows_background.png);
+    margin: 0;
+    padding: 0;
+}
+.site a{
+    text-decoration: none;
+    color: inherit;
+}
+.site ul{
+    list-style: none;
+}
+
+
+
+
+
+.site strong {
+    font-weight: 800;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+.container-credit{
+    margin-top: 5em;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1em;
+}
+
+.outer-credit {
+    margin-top: 5em;
+    border-radius: 1.8em;
+    padding: 4em 2em;
+    background-color: rgba(255, 255, 255, 0.967);
+}
+.header-credit{
+    margin-bottom: 4em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header-credit .logo-credit{
+    font-size: 2em;
+    color: #000000;
+}
+.header-credit .logo-credit strong {
+    color: #57432a;
+}
+.header-credit .time-left{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    line-height: 1.2;
+}
+.payment, .payment :where(form > div:not(.card-number), .card-expiration .input-credit){
+    display: flex;
+    align-items: center;
+}
+.payment{
+    flex-direction: column-reverse;
+    gap: 4em;
+}
+.payment form > div{
+    margin-bottom: 2.5em;
+    flex-direction: column;
+    align-items: stretch;
+}
+.payment form > div:not(.card-number) > div{
+    flex: 1 0 50%;
+    margin: 0.5em 0;
+}
+.payment .left p{
+    font-size: 20px;
+    font-weight: 700;
+}
+.payment .left span {
+    color: #6e6e76;
+}
+.payment .left input{
+    font-weight: 600;
+    font-size: 20px;
+    padding: 0 1em;
+    line-height: 46px;
+    border-radius: 8px;
+    width: 100%;
+    border: 2px solid #6e6e76;
+    outline-color: transparent;
+    -webkit-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+}
+.payment .left input::placeholder{
+    font-weight: 300;
+    font-family: inherit;
+    letter-spacing: 2px;
+    color: #6e6e76;
+    font-size: 12px;
+    opacity: .5;
+}
+.payment .left input:focus{
+    outline-color: #40311E;
+    background-color: #e0e0e7;
+}
+.payment .card-number-box{
+    position: relative;
+    margin-top: 1em;
+}
+.payment .card-number-box input{
+    padding: 0 4em;
+}
+.payment .card-number-box input::placeholder{
+    font-size: inherit;
+}
+.payment form .cc-logo{
+    position: absolute;
+    top: 50%;
+    left: 1.2em;
+    margin-top: -10px;
+}
+.payment .cc-logo::before, .payment .cc-logo::after{
+    content: '';
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+}
+.payment .cc-logo::after{
+    background-color: #f79e1c;
+    margin-left: -7px;
+    opacity: .75;
+}
+.payment .card-expiration .input-credit{
+    gap: 10%;
+    text-align: center;
+}
+.payment .card-expiration input{
+    text-align: center;
+}
+.payment form button{
+    font-size: 20px;
+    font-weight: 600;
+    border: 0;
+    background-color: red;
+    color: white;
+    line-height: 56px;
+    border-radius: 8px;
+    width: 100%;
+    cursor: pointer;
+    -webkit-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+}
+.payment form button:hover{
+    background-color: #f79e1c;
+}
+.payment .right{
+    max-width: 300px;
+    width: 100%;
+}
+.payment .card-virtual{
+    position: relative;
+    margin: 0 2em -5em;
+    padding: 2em;
+    line-height: 2em;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    background-color: #434249;
+    border-radius: 10px;
+    box-shadow: rgb(43 45 66 / 30%) 0 20px 30px;
+    z-index: 1;
+    overflow: hidden;
+}
+.payment .card-virtual .cc-logo{
+    position: relative;
+    transform: scale(5);
+    text-align: center;
+}
+.payment .card-virtual .name-holder{
+    margin: 1em 0 0;
+}
+.payment .chip{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin: 0 -1,5em -1.5em;
+    opacity: .5;
+}
+.payment .chip svg{
+    width: 30px;
+    fill: #ffffff;
+    margin-top: 0.5em;
+}
+.payment .card-virtual .highlight{
+    position: relative;
+    height: auto;
+    margin: 2em -2em -2em;
+    background-color: #81818c;
+    border-radius: 0 0 10px 10px;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+}
+.payment .right .receipt{
+    position: relative;
+    padding: 8em 2em 2em;
+    border-radius: 10px;
+    background-color: #e0e0e7;
+}
+.payment .right .receipt ul li{
+    display: flex;
+    justify-content: space-between;
+    line-height: 3em;
+    border-bottom: 1px dotted #6e6e76;
+}
+.payment .right .receipt ul li span:first-child{
+    color: #515154;
+}
+.payment .right .receipt ul li span:last-child{
+    font-weight: 700;
+}
+.payment .right .receipt .total{
+    text-align: right;
+    margin-top: 1em;
+}
+.payment .receipt .total .price{
+    font-size: 1.5em;
+}
+
+
+
+@media screen and (min-width: 576px){
+    .outer{
+        padding: 4em;
+    }
+    .payment form > div{
+        flex-direction: row;
+    }
+    .payment form > div .text{
+        padding-right: 1em;
+    }
+}
+
+@media screen and (min-width: 992px){
+    .header-credit{
+        max-width: 70%;
+        padding-right: 4em;
+        margin-bottom: 0;
+    }
+    .payment{
+        flex-direction: row;
+        gap: 0;
+    }
+    .payment .left{
+        flex: 1 0 65%;
+        padding-right: 4em;
+    }
+    .payment .right{
+        flex: 1 0 35%;
+        align-items: flex-end;
+    }
+}

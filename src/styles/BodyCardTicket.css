@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Platypi:ital,wght@0,300..800;1,300..800&family=Sedan:ital@0;1&display=swap');
+
+
+*,::before,::after{
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+}
+.site{
+    height: 100vh;
+    font-family: 'Platypi', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: black;
+    /* background: #5e5050; */
+    background-image: url(../img/shows_background.png);
+    margin: 0;
+    padding: 0;
+}
+.site a{
+    text-decoration: none;
+    color: inherit;
+}
+.site ul{
+    list-style: none;
+}
+.site h1,h2,h3{
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 0 0 0.5em;
+}
+.site img{
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+.form-one .bg-svg{
+    
+}
+.img-ticket-show {
+    padding-top: 0;
+}
+.img-ticket-show img{
+    vertical-align: middle;
+    width: 180px;
+    height: 200px;
+}
+
+.container-cardticket{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2em;
+    padding-top: 75px;
+}
+.form-box-ticket{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5em;
+    border: 8px solid #4d4440;
+    border-radius: 15px;
+    background-color: #665a55df;
+    
+}
+/*PROGRESS*/
+.form-box-ticket .progress{
+    position: relative;
+    padding: 1em;
+}
+
+.logo-ticket{
+    font-size: 1.75em;
+    font-weight: 800;
+    color:#fff;
+    padding: 40px 48px;
+    text-align: center;
+}
+.logo-ticket span{
+    color: #271e13;
+}
+/*PROGRESS Steps*/
+.progress ul.progress-steps-tickets{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+}
+.progress ul.progress-steps-tickets li{
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 2em;
+}
+.progress ul.progress-steps-tickets li > span{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1em;
+    border-radius: 50%;
+    background-color: #b0b0c0;
+    z-index: 1;
+}
+.progress ul.progress-steps-tickets li.active > span{
+    color: white;
+    background-color: #40311E;
+    border: 4px solid #817069;
+}
+.progress ul.progress-steps-tickets li p span{
+    font-size: 14px;
+    color: #ffffff;
+    display: none;
+}
+.progress ul li p{
+    position: absolute;
+    top: -2em;
+    font-size: 12px;
+}
+/*Form*/
+.form-box-ticket form{
+    width: 100%;
+    padding: 3em 1em;
+    background-color: #a7938aad;
+    border-radius: 30px 30px 15px 15px;
+}
+form > div{
+    max-width: 400px;
+    margin: 0 auto;
+}
+form > div p{
+    color: #000000;
+    margin-bottom: 1em;
+    font-size: 16px;
+}
+form > div >div:not(.checkbox){
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+}
+form :where(input,select){
+    height: 40px;
+    padding: 0 1em;
+    border-radius: 7px;
+    outline-color: #ffffff;
+    border: 1px solid #ffffff;
+    background-color: transparent;
+}
+
+.bg-svg{
+    align-items: center;
+}
+.form-one select {
+    padding: 10px;
+    font-size: 16px;
+    color: #333;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+}
+.form-one select::after {
+    content: '▼';
+    font-size: 12px;
+    color: #999;
+    position: absolute;
+    right: 10px;
+    top: calc(50% - 6px);
+    pointer-events: none;
+}
+.form-one option {
+    padding: 10px;
+    background-color: #fff;
+    color: #333;
+}
+
+
+form label{
+    font-size: 20px;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+}
+form .grouping{
+    display: flex;
+}
+form .grouping input{
+    max-width: 70px;
+    text-align: center;
+    margin-right: 1em;
+}
+/*Buttons*/
+form > div:not(.btn-group){
+    display: none;
+    -webkit-animation: fadeIn .6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+    animation: fadeIn .6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+form > div.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10%);
+        -webkit-animation: translateY(10%);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+        -webkit-animation: translateY(0);
+    }
+}
+
+
+
+.btn-group{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin-top: 2em;
+}
+.btn-group [class*="btn-"]{
+    background-color: #40311E;
+    color: white;
+    padding: 1em 2.5em;
+    border: 4px solid #817069;
+    border-radius: 30px;
+    cursor: pointer;
+    -webkit-transition: background-color .3s, border-color .3s ease-out;
+    transition: background-color .3s, border-color .3s ease-out;
+}
+.btn-group [class*="btn-"]:disabled {
+    background-color: #b0b0c0;
+    border-color: #e0e0e7;
+    cursor: text;
+}
+.btn-group [class*="btn-"]:hover:not(:disabled){
+    background-color: #52505e;
+    border-color: #b0b0c0;
+}
+
+.btn-group .btn-submit,
+.form-three.active ~ .btn-group .btn-next{
+    display: none;
+}
+.form-three.active ~ .btn-group .btn-submit{
+    display:block;
+}
+.form-three.active ~ .btn-group {
+    justify-content: space-between;
+}
+::placeholder{
+    color: #000000;
+}
+
+
+@media screen and (min-width: 768px){
+    .form-box-ticket{
+        flex-direction: row;
+    }
+    .form-box-ticket .progress{
+        flex: 1 0 35%;
+        min-width: 300px;
+        padding: 3em;
+    }
+    .logo-ticket {
+        margin: -48px -48px 48px;
+    }
+    .progress ul.progress-steps-tickets{
+        flex-direction: column;
+        gap: 0;
+    }
+    .progress ul.progress-steps-tickets li:not(:last-child)::before{
+        content: '';
+        position: absolute;
+        left: 20px;
+        top: 30px;
+        width: 2px;
+        height: 90px;
+        background-color: #e0e0e7;
+    }
+    .form-box-ticket form{
+        padding: 3em;
+        border-radius: 0 15px 15px 0;
+    }
+    .progress ul li p{
+        position: relative;
+        top: auto;
+        font-size: inherit;
+    }
+    .progress ul.progress-steps-tickets li p span {
+        display: block;
+    }
+}
