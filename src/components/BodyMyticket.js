@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../styles/BodyMyticket.css";
-import { getUserData, logout } from '../services/BodyMyticketService';
+import { getUserData, logout } from '../services/AuthService';
 import imagecard1 from '../img/icon_hamilton.png';
 import imagecard2 from '../img/icon_falsettos.png';
 import imagecard3 from '../img/icon_hairsprey.png';

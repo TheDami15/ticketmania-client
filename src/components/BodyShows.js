@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getEvents } from '../services/BodyShowsService';
+import { useNavigate } from 'react-router-dom';
+import { getEvents } from '../services/EventService';
 import "../styles/BodyShows.css";
 
 const BodyShows = () => {
@@ -7,6 +8,7 @@ const BodyShows = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchEvents = async () => {
@@ -34,6 +36,10 @@ const BodyShows = () => {
         }
     };
 
+    const handleEventClick = (eventId) => {
+        navigate(`/cardticket?id=${eventId}`);
+    };
+
     if (error) {
         return <div className="error">Error: {error}</div>;
     }
@@ -48,7 +54,7 @@ const BodyShows = () => {
             <div className="container_shows">
                 <div className="card__container_shows">
                     {events.map(event => (
-                        <article key={event.id} className="card__article_shows">
+                        <article key={event.id} className="card__article_shows" onClick={() => handleEventClick(event.id)}>
                             <img src={event.imageCover} alt={event.name} className="card__img_shows" />
 
                             <div className="card__data_shows">

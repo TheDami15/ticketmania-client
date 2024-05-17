@@ -39,7 +39,9 @@ const BodyHome = () => {
                             <div className="author">{new Date(event.createdAt).toLocaleDateString()}</div>
                             <div className="des">{event.description}</div>
                             <div className="buttons">
-                            <button><Link to="/cardticket">SEE MORE</Link></button>
+                                {isLoggedIn() && (
+                                    <button><Link to="/cardticket">SEE MORE</Link></button>
+                                )}
                                 {isLoggedIn() ? (
                                     <button><Link to="/myticket">My Ticket</Link></button> // Show this if logged in
                                 ) : (

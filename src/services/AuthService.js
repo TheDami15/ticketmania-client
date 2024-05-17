@@ -1,4 +1,4 @@
-// src/services/BodyMyticketService.js
+// src/services/AuthService.js
 const getUserData = async () => {
     const token = localStorage.getItem('token');
 
