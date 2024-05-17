@@ -128,21 +128,21 @@ html{
     background-color: #a7938aad;
     border-radius: 30px 30px 15px 15px;
 }
-form > div{
+#form-card > div{
     max-width: 400px;
     margin: 0 auto;
 }
-form > div p{
+#form-card > div p{
     color: #000000;
     margin-bottom: 1em;
     font-size: 16px;
 }
-form > div >div:not(.checkbox){
+#form-card > div >div:not(.checkbox){
     display: flex;
     flex-direction: column;
     margin-bottom: 1em;
 }
-form :where(input,select){
+#form-card :where(input,select){
     height: 40px;
     padding: 0 1em;
     border-radius: 7px;
@@ -183,26 +183,28 @@ form :where(input,select){
 }
 
 
-form label{
+#form-card label{
     font-size: 20px;
     margin-bottom: 0.5em;
     font-weight: 600;
+    margin-right: 18px;
 }
-form .grouping{
+#form-card .grouping{
     display: flex;
 }
-form .grouping input{
+#form-card .grouping input{
     max-width: 70px;
     text-align: center;
     margin-right: 1em;
 }
 /*Buttons*/
-form > div:not(.btn-group){
+#form-card > div:not(.btn-group){
     display: none;
     -webkit-animation: fadeIn .6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
     animation: fadeIn .6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
-form > div.active {
+#form-card > div.active {
+    margin-bottom: 2em;
     display: block;
 }
 

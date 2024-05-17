@@ -1,18 +1,51 @@
-import React from 'react'
-import '../styles/BodyCreditCard.css'
+import React, { useEffect, useState } from 'react';
+import '../styles/BodyCreditCard.css';
+import { input_credit_card, attachOtherInputHandlers, startTimer } from '../services/BodyCreditCardServices';
 
 const BodyCreditCard = () => {
-    return (
-<div id="page" className="site">
+  const [creditCard, setCreditCard] = useState('');
+  const [cardName, setCardName] = useState('');
+  const [securityCode, setSecurityCode] = useState('');
+  const [expMonth, setExpMonth] = useState('');
+  const [expYear, setExpYear] = useState('');
+
+  const handleCreditCardChange = (e) => setCreditCard(e.target.value);
+  const handleCardNameChange = (e) => setCardName(e.target.value);
+  const handleSecurityCodeChange = (e) => {
+    const value = e.target.value.slice(0, 4);
+    setSecurityCode(value);
+  };
+  const handleExpMonthChange = (e) => {
+    const value = e.target.value.slice(0, 2);
+    setExpMonth(value);
+  };
+  const handleExpYearChange = (e) => {
+    const value = e.target.value.slice(0, 2);
+    setExpYear(value);
+  };
+
+  useEffect(() => {
+    const creditCardInput = document.getElementById('credit-card');
+    if (creditCardInput) {
+      input_credit_card(creditCardInput);
+    }
+    attachOtherInputHandlers();
+
+    const display = document.querySelector('#time');
+    startTimer(60 * 3, display);
+  }, []);
+
+  return (
+    <div id="page" className="site-credit">
       <div className="container-credit">
         <div className="outer-credit">
           <div className="header-credit">
             <div className="logo-credit">
-              <a href="#"><strong>.Ticket</strong>Mania</a>
+              <a href="#"><strong>.web</strong>Pay</a>
             </div>
             <div className="time-left">
               <time id="time">03:00</time>
-              <span>time left!</span>
+              <span></span>
             </div>
           </div>
           <section className="payment">
@@ -27,7 +60,9 @@ const BodyCreditCard = () => {
                       id="credit-card"
                       autoComplete="off"
                       placeholder="xxxx - xxxx - xxxx - xxxx"
-                    ></input>
+                      value={creditCard}
+                      onChange={handleCreditCardChange}
+                    />
                     <span className="cc-logo"></span>
                   </div>
                 </div>
@@ -42,7 +77,9 @@ const BodyCreditCard = () => {
                       id="card-name"
                       autoComplete="off"
                       required
-                    ></input>
+                      value={cardName}
+                      onChange={handleCardNameChange}
+                    />
                   </div>
                 </div>
                 <div className="card-cvv">
@@ -55,10 +92,9 @@ const BodyCreditCard = () => {
                       type="number"
                       data-maxlength="4"
                       required
-                      onInput={(e) => {
-                        e.target.value = e.target.value.slice(0, e.target.dataset.maxlength);
-                      }}
-                    ></input>
+                      value={securityCode}
+                      onChange={handleSecurityCodeChange}
+                    />
                   </div>
                 </div>
                 <div className="card-expiration">
@@ -73,10 +109,9 @@ const BodyCreditCard = () => {
                       placeholder="MM"
                       data-maxlength="2"
                       required
-                      onInput={(e) => {
-                        e.target.value = e.target.value.slice(0, e.target.dataset.maxlength);
-                      }}
-                    ></input>
+                      value={expMonth}
+                      onChange={handleExpMonthChange}
+                    />
                     <strong> / </strong>
                     <input
                       type="number"
@@ -84,10 +119,9 @@ const BodyCreditCard = () => {
                       placeholder="YY"
                       data-maxlength="2"
                       required
-                      onInput={(e) => {
-                        e.target.value = e.target.value.slice(0, e.target.dataset.maxlength);
-                      }}
-                    ></input>
+                      value={expYear}
+                      onChange={handleExpYearChange}
+                    />
                   </div>
                 </div>
                 <button>Pay Now</button>
@@ -154,7 +188,7 @@ const BodyCreditCard = () => {
         </div>
       </div>
     </div>
-    );
-  };
+  );
+};
 
-export default BodyCreditCard
+export default BodyCreditCard;

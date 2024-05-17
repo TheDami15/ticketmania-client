@@ -35,7 +35,7 @@ const BodyCardTicket = () => {
               </li>
             </ul>
           </div>
-          <form action="">
+          <form id='form-card' action="">
             <div className="form-one form-step active">
               <div className="bg-svg">
                 <h2>Name Show</h2>
