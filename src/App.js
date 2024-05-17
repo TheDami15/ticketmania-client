@@ -3,7 +3,7 @@ import Form  from "./pages/Form.js"
 import Shows from "./pages/Shows.js";
 import Myticket from "./pages/Myticket.js";
 import CardTicket from "./pages/CardTicket.js";
-import Creditcard from "./components/BodyCreditCard.js";
+import Creditcard from "./components/BodyCreditCard";
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 function App() {
