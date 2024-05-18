@@ -58,37 +58,37 @@ const BodyForm = () => {
             <div className={`container-form register ${isLoginActive ? 'hide' : ''}`}>
                 <div className="information">
                     <div className="info-childs">
-                        <h2>Bienvenido</h2>
-                        <p>Para unirte a nuestra comunidad por favor Inicia Sesión con tus datos</p>
+                    <h2>Welcome</h2>
+                    <p>To join our community, please log in with your details</p>
                         <input type="button" value="Iniciar Sesión" onClick={() => toggleForm(true)}></input>
                     </div>
                 </div>
                 <div className="form-information">
                     <div className="form-information-childs">
-                        <h2>Crear una Cuenta</h2>
+                        <h2>Create an Account</h2>
                         <div className="icons">
                             <i className='bx bxl-google'></i>
                             <i className='bx bxl-github'></i>
                             <i className='bx bxl-linkedin' ></i>
                         </div>
-                        <p>o usa tu email para registrarte</p>
+                        <p>or use your email to register</p>
                         <form className="form form-register" onSubmit={handleRegister} noValidate>
                             <div>
                                 <label>
                                     <i className='bx bx-user' ></i>
-                                    <input type="text" placeholder="Nombre Usuario" value={name} onChange={(e) => setName(e.target.value)} name="userName" required />
+                                    <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} name="userName" required />
                                 </label>
                             </div>
                             <div>
                                 <label >
                                     <i className='bx bx-envelope' ></i>
-                                    <input type="email" placeholder="Correo Electrónico" value={email} onChange={(e) => setEmail(e.target.value)} name="userEmail" required />
+                                    <input type="email" placeholder="Email " value={email} onChange={(e) => setEmail(e.target.value)} name="userEmail" required />
                                 </label>
                             </div>
                             <div>
                                 <label>
                                     <i className='bx bx-lock-alt' ></i>
-                                    <input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} name="userPassword" required />
+                                    <input type="password" placeholder="PassWord" value={password} onChange={(e) => setPassword(e.target.value)} name="userPassword" required />
                                 </label>
                             </div>
                             <input type="submit" value="Registrarse" />
@@ -105,31 +105,31 @@ const BodyForm = () => {
             <div className={`container-form login ${isLoginActive ? '' : 'hide'}`}>
                 <div className="information">
                     <div className="info-childs">
-                        <h2>¡¡Bienvenido nuevamente!!</h2>
-                        <p>Para unirte a nuestra comunidad por favor Inicia Sesión con tus datos</p>
+                    <h2>Welcome back!</h2>
+                    <p>To join our community, please log in with your details</p>
                         <input type="button" value="Registrarse" onClick={() => toggleForm(false)}></input>
                     </div>
                 </div>
                 <div className="form-information">
                     <div className="form-information-childs">
-                        <h2>Iniciar Sesión</h2>
+                        <h2>Log In</h2>
                         <div className="icons">
                             <i className='bx bxl-google'></i>
                             <i className='bx bxl-github'></i>
                             <i className='bx bxl-linkedin' ></i>
                         </div>
-                        <p>o Iniciar Sesión con una cuenta</p>
+                        <p>or log in with an account</p>
                         <form className="form form-login" onSubmit={handleLogin} noValidate>
                             <div>
                                 <label>
                                     <i className='bx bx-envelope' ></i>
-                                    <input type="email" placeholder="Correo Electrónico" value={email} onChange={(e) => setEmail(e.target.value)} name="userEmail" required />
+                                    <input type="email" placeholder="Email " value={email} onChange={(e) => setEmail(e.target.value)} name="userEmail" required />
                                 </label>
                             </div>
                             <div>
                                 <label>
                                     <i className='bx bx-lock-alt' ></i>
-                                    <input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} name="userPassword" required />
+                                    <input type="password" placeholder="PassWord" value={password} onChange={(e) => setPassword(e.target.value)} name="userPassword" required />
                                 </label>
                             </div>
                             <input type="submit" value="Iniciar Sesión" />

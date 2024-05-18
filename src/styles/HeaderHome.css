@@ -70,4 +70,53 @@ header{
      font-size: 2rem;
      cursor: pointer;
      display: none;
+     color: white;
  }
+
+ @media screen and (max-width: 768px) {
+    .logo {
+        font-size: 1.8rem;
+        padding-left: 5vh;
+        padding-right: 5vh;
+    }
+
+    .imglogo {
+        width: 12vh;
+        height: 12vh;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        padding-right: 0;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        width: 100%;
+        height: calc(100vh - 70px);
+        justify-content: center;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .navbar a {
+        font-size: 1.5rem;
+        padding: 20px;
+     
+    }
+    .navbar li {
+        font-size: 1.5rem;
+        padding: 20px;
+        padding-bottom: 15px;
+     
+    }
+
+    .navbar.show {
+        transform: translateX(0);
+    }
+
+    #menu-icon {
+        display: block;
+    }
+}

@@ -1,34 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/HeaderHome.css'
+import '../styles/HeaderHome.css';
 import logo from "../img/logo2.png";
 import { isLoggedIn } from '../utils/auth';
+
 const HeaderHome = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   return (
-
     <header>
       <Link to="/" className="logo">
-        <img className='imglogo' src={logo}></img>
+        <img className='imglogo' src={logo} alt="Logo" />
       </Link>
       <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
-      <div className="bx bx-menu" id="menu-icon"></div>
+      <div className="bx bx-menu" id="menu-icon" onClick={toggleMenu}></div>
 
-      <ul className="navbar">
-        <li><Link to="/">HOME</Link></li>
-        <li><Link to="/shows">SHOWS</Link></li>
+      <ul className={`navbar ${menuOpen ? 'show' : ''}`}>
+        <li><Link to="/" onClick={toggleMenu}>HOME</Link></li>
+        <li><Link to="/shows" onClick={toggleMenu}>SHOWS</Link></li>
         
         {isLoggedIn() ? (
-          <li><Link to="/myticket">MYTICKET</Link></li> // Show this if logged in
+          <li><Link to="/myticket" onClick={toggleMenu}>MYTICKET</Link></li> // Show this if logged in
         ) : (
-          <li><Link to="/form">LOG IN</Link></li> // Show this if not logged in
+          <li><Link to="/form" onClick={toggleMenu}>LOG IN</Link></li> // Show this if not logged in
         )}
       </ul>
-
     </header>
+  );
+};
 
-
-  )
-}
-
-export default HeaderHome
+export default HeaderHome;
