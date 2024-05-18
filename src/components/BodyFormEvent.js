@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { getConcerts } from '../services/EventService'; // Import the getConcerts function
+import { getConcerts, deleteConcert } from '../services/EventService'; // Import the getConcerts function
 import '../styles/BodyFormEvent.css';
 
 const EventForm = () => {
@@ -44,6 +44,17 @@ const EventForm = () => {
         }
     }, [id]);
 
+    const handleDeleteConcertClick = async (concertId) => {
+        try {
+            await deleteConcert(concertId);
+            console.log('Concert deleted successfully');
+            // Refetch concerts after deletion
+            const concertData = await getConcerts(id);
+            setConcerts(concertData.data);
+        } catch (error) {
+            console.error('Error deleting concert:', error.message);
+        }
+    };
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -91,9 +102,9 @@ const EventForm = () => {
                 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
                 <h2>
                     <Link to="/shows"><i className='bx bxs-chevrons-left'></i></Link>
-                    TicketMania 
+                    TicketMania
                     <Link to="/create-concert"><i className='bx bx-calendar-plus'></i></Link>
-                    
+
                 </h2>
                 <form onSubmit={handleSubmit} encType="multipart/form-data">
                     <div className="form-group-events">
@@ -121,7 +132,7 @@ const EventForm = () => {
                                 <li key={concert.id}>
                                     {`in ${concert.location} at ${new Date(concert.date).toLocaleString()}`}
                                     <a href={`/edit-concert/${concert.id}`}><i className='bx bxs-edit'></i></a>
-                                    <i className='bx bxs-message-x'></i>
+                                    <i className='bx bxs-message-x' onClick={() => handleDeleteConcertClick(concert.id)}></i>
                                 </li>
                             ))}
                         </ul>

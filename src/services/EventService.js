@@ -65,4 +65,20 @@ const deleteEvent = async (eventId) => {
     return response.json();
 };
 
-export { getEvents, getEventDetails, getConcerts, deleteEvent };
+
+const deleteConcert = async (concertId) => {
+    const response = await fetch(`${API_BASE_URL}/concerts/${concertId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to delete concert');
+    }
+
+    return response.json();
+};
+export { getEvents, getEventDetails, getConcerts, deleteEvent, deleteConcert };
