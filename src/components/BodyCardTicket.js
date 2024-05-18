@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import '../styles/BodyCardTicket.css';
 import { getEventDetails, getConcerts } from '../services/EventService';
 import { getUserData } from '../services/AuthService';
+import { getAvailableTickets } from '../services/TicketService';
 import halmiton from '../img/Hamilton2.png';
 import formNavigation from '../services/BodyCardTicketServices.js';
 
@@ -16,10 +17,12 @@ const BodyCardTicket = () => {
   const [event, setEvent] = useState(null);
   const [concerts, setConcerts] = useState([]);
   const [tickets, setTickets] = useState(1);
-  const [selectedConcert, setSelectedConcert] = useState('');
+  const [selectedConcertId, setSelectedConcertId] = useState('');
+  const [availableTickets, setAvailableTickets] = useState(0);
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [isNextDisabled, setIsNextDisabled] = useState(true);
+  const [isTicketInputDisabled, setIsTicketInputDisabled] = useState(false);
 
   useEffect(() => {
     const fetchEventData = async () => {
@@ -89,13 +92,22 @@ const BodyCardTicket = () => {
   };
 
   const handleConcertChange = (event) => {
-    setSelectedConcert(event.target.value);
+    const selectedConcertId = event.target.value;
+    setSelectedConcertId(selectedConcertId);
+
+    const selectedConcert = concerts.find(concert => concert.id === parseInt(selectedConcertId));
+    if (selectedConcert) {
+      const available = getAvailableTickets(selectedConcert);
+      setAvailableTickets(available);
+      setTickets(available > 0 ? 1 : 0); // Reset ticket count if available tickets change
+      setIsTicketInputDisabled(available === 0); // Disable ticket input if no tickets are available
+    }
   };
 
   useEffect(() => {
-    const isFormValid = selectedConcert !== '' && tickets > 0;
+    const isFormValid = selectedConcertId !== '' && tickets > 0;
     setIsNextDisabled(!isFormValid);
-  }, [selectedConcert, tickets]);
+  }, [selectedConcertId, tickets]);
 
   if (error) {
     return <div className="error">Error: {error}</div>;
@@ -136,10 +148,10 @@ const BodyCardTicket = () => {
               </div>
               <p>{event.data.description}</p> {/* Ensure event description is rendered */}
               <label>Day:</label>
-              <select name="show-dates" id="show-dates" value={selectedConcert} onChange={handleConcertChange}>
+              <select name="show-dates" id="show-dates" value={selectedConcertId} onChange={handleConcertChange}>
                 <option value="">Select date</option>
                 {concerts.map((concert) => (
-                  <option key={concert.id} value={concert.date}>
+                  <option key={concert.id} value={concert.id}>
                     {new Date(concert.date).toLocaleDateString()} at {concert.location}
                   </option>
                 ))}
@@ -155,14 +167,19 @@ const BodyCardTicket = () => {
               </div>
               <div>
                 <label>Tickets</label>
-                <input
-                  type="number"
-                  min="1"
-                  max="100"
-                  step="1"
-                  value={tickets}
-                  onChange={handleTicketChange}
-                ></input>
+                {isTicketInputDisabled ? (
+                  <p>No tickets available for the selected concert.</p>
+                ) : (
+                  <input
+                    type="number"
+                    min="1"
+                    max={availableTickets}
+                    step="1"
+                    value={tickets}
+                    onChange={handleTicketChange}
+                    disabled={isTicketInputDisabled}
+                  ></input>
+                )}
               </div>
             </div>
             <div className="form-three form-step">
