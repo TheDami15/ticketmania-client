@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import '../styles/BodyCardTicket.css';
 import { getEventDetails, getConcerts } from '../services/EventService';
 import { getUserData } from '../services/AuthService';
 import { getAvailableTickets } from '../services/TicketService';
 import halmiton from '../img/Hamilton2.png';
-import formNavigation from '../services/BodyCardTicketServices.js';
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -14,6 +13,7 @@ const useQuery = () => {
 const BodyCardTicket = () => {
   const query = useQuery();
   const eventId = query.get('id');
+  const navigate = useNavigate();
   const [event, setEvent] = useState(null);
   const [concerts, setConcerts] = useState([]);
   const [tickets, setTickets] = useState(1);
@@ -23,6 +23,7 @@ const BodyCardTicket = () => {
   const [error, setError] = useState(null);
   const [isNextDisabled, setIsNextDisabled] = useState(true);
   const [isTicketInputDisabled, setIsTicketInputDisabled] = useState(false);
+  const [activeStep, setActiveStep] = useState(1); // Track the current step
 
   useEffect(() => {
     const fetchEventData = async () => {
@@ -72,21 +73,6 @@ const BodyCardTicket = () => {
     }
   }, [event]);
 
-  useEffect(() => {
-    const initializeFormNavigation = () => {
-      const nextButton = document.querySelector('.btn-next');
-      const prevButton = document.querySelector('.btn-prev');
-
-      if (nextButton && prevButton) {
-        formNavigation();
-      } else {
-        setTimeout(initializeFormNavigation, 100); // Retry initialization
-      }
-    };
-
-    initializeFormNavigation();
-  }, []);
-
   const handleTicketChange = (event) => {
     setTickets(event.target.value);
   };
@@ -109,6 +95,18 @@ const BodyCardTicket = () => {
     setIsNextDisabled(!isFormValid);
   }, [selectedConcertId, tickets]);
 
+  const handleNextStep = () => {
+    if (activeStep === 2) {
+      navigate(`/creditcard?concertId=${selectedConcertId}&tickets=${tickets}`);
+    } else {
+      setActiveStep((prevStep) => Math.min(prevStep + 1, 3));
+    }
+  };
+
+  const handlePrevStep = () => {
+    setActiveStep((prevStep) => Math.max(prevStep - 1, 1));
+  };
+
   if (error) {
     return <div className="error">Error: {error}</div>;
   }
@@ -124,22 +122,22 @@ const BodyCardTicket = () => {
           <div className="progress">
             <div className="logo-ticket"><a href="/"><span>.Ticket</span>Mania</a></div>
             <ul className="progress-steps-tickets">
-              <li className="step active">
+              <li className={`step ${activeStep === 1 ? 'active' : ''}`}>
                 <span>1</span>
                 <p>Shows<br /><span>25 secs to complete</span></p>
               </li>
-              <li className="step">
+              <li className={`step ${activeStep === 2 ? 'active' : ''}`}>
                 <span>2</span>
                 <p>Tickets<br /><span>60 secs to complete</span></p>
               </li>
-              <li className="step">
+              <li className={`step ${activeStep === 3 ? 'active' : ''}`}>
                 <span>3</span>
-                <p>Credit Card<br /><span>3 minut to complete</span></p>
+                <p>Credit Card<br /><span>3 mins to complete</span></p>
               </li>
             </ul>
           </div>
           <form id='form-card' action="">
-            <div className="form-one form-step active">
+            <div className={`form-one form-step ${activeStep === 1 ? 'active' : ''}`}>
               <div className="bg-svg">
                 <h2>{event.data.name}</h2> {/* Ensure event name is rendered */}
                 <div className="img-ticket-show">
@@ -157,7 +155,7 @@ const BodyCardTicket = () => {
                 ))}
               </select>
             </div>
-            <div className="form-two form-step">
+            <div className={`form-two form-step ${activeStep === 2 ? 'active' : ''}`}>
               <div className="bg-svg"></div>
               <h2>Personal Information</h2>
               <div>
@@ -182,11 +180,12 @@ const BodyCardTicket = () => {
                 )}
               </div>
             </div>
-            <div className="form-three form-step">
+            <div className={`form-three form-step ${activeStep === 3 ? 'active' : ''}`}>
+              {/* Add credit card form fields here */}
             </div>
             <div className="btn-group">
-              <button type="button" className="btn-prev" disabled>Back</button>
-              <button type="button" className="btn-next" disabled={isNextDisabled}>Next Step</button>
+              <button type="button" className="btn-prev" onClick={handlePrevStep} disabled={activeStep === 1}>Back</button>
+              <button type="button" className="btn-next" onClick={handleNextStep} disabled={isNextDisabled}>Next Step</button>
               <button type="button" className="btn-submit">Submit</button>
             </div>
           </form>

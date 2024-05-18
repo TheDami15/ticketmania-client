@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import '../styles/BodyCreditCard.css';
 import { input_credit_card, attachOtherInputHandlers, startTimer } from '../services/BodyCreditCardServices';
 
+const useQuery = () => {
+  return new URLSearchParams(useLocation().search);
+};
+
 const BodyCreditCard = () => {
+  const query = useQuery();
+  const concertId = query.get('concertId');
+  const tickets = query.get('tickets');
+
   const [creditCard, setCreditCard] = useState('');
   const [cardName, setCardName] = useState('');
   const [securityCode, setSecurityCode] = useState('');
@@ -168,8 +177,9 @@ const BodyCreditCard = () => {
                     <span>20062024</span>
                   </li>
                   <li>
-                    <span>Event</span>
-                    <span>Romeo & Juliet</span>
+                    <span>Number of Tickets</span>
+                    <span>{tickets}</span> {/* Display the number of tickets */}
+                    <span>{concertId}</span> {/* Display the number of tickets */}
                   </li>
                   <li>
                     <span>Tax (10%)</span>

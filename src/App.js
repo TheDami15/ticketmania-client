@@ -4,6 +4,7 @@ import Shows from "./pages/Shows.js";
 import Myticket from "./pages/Myticket.js";
 import CardTicket from "./pages/CardTicket.js";
 import Creditcard from "./components/BodyCreditCard";
+import PaymentComplete from './components/PaymentComplete';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path='/myticket' Component={Myticket}></Route>
           <Route path='/cardticket' Component={CardTicket}></Route>
           <Route path='/creditcard' Component={Creditcard}></Route>
+        <Route path="/payment-complete" element={<PaymentComplete />} />
       </Routes>
     </div>
   </Router>
