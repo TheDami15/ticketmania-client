@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
+import { useNavigate } from 'react-router-dom';
 import { Elements, useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js';
 import '../styles/BodyCreditCard.css';
 import { input_credit_card, startTimer } from '../services/BodyCreditCardServices';
@@ -11,6 +12,7 @@ const CheckoutForm = ({ concertId, ticketQuantity }) => {
   const elements = useElements();
   const [cardName, setCardName] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate(); // Initialize navigate
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -55,7 +57,8 @@ const CheckoutForm = ({ concertId, ticketQuantity }) => {
 
       const data = await response.json();
       console.log('Ticket purchase successful:', data);
-      // Redirect to success page or show success message
+      // Redirect to PurchaseSuccess component after successful purchase
+      navigate('/purchase-success');
     } catch (error) {
       setErrorMessage(error.message);
       console.error('Error during ticket purchase:', error);
