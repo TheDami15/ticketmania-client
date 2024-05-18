@@ -1,5 +1,5 @@
 import Home from "./pages/Home.js";
-import Form  from "./pages/Form.js"
+import Form from "./pages/Form.js";
 import Shows from "./pages/Shows.js";
 import Myticket from "./pages/Myticket.js";
 import CardTicket from "./pages/CardTicket.js";
@@ -8,25 +8,25 @@ import Forms_edit from "./pages/Forms_edit.js";
 import FormConcert from "./components/BodyFormConcert.js";
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 function App() {
   return (
     <Router>
-    <div className='App'>
-      <Routes>
-          <Route path='/' exact Component={Home}></Route>
-          <Route path='/form' Component={Form}></Route>
-          <Route path='/shows' Component={Shows}></Route>
-          <Route path='/myticket' Component={Myticket}></Route>
-          <Route path='/cardticket' Component={CardTicket}></Route>
-          <Route path='/creditcard' Component={Creditcard}></Route>
-          <Route path='/formsedit/:id' Component={Forms_edit}></Route>
-          <Route path='/edit-concert/:id' Component={FormConcert}></Route>
-          <Route path='/formsadd' Component={Forms_edit}></Route>
-          
-          <Route path='/formseditconcert' Component={FormConcert}></Route>
-      </Routes>
-    </div>
-  </Router>
+      <div className='App'>
+        <Routes>
+          <Route path='/' exact element={<Home />} />
+          <Route path='/form' element={<Form />} />
+          <Route path='/shows' element={<Shows />} />
+          <Route path='/myticket' element={<Myticket />} />
+          <Route path='/cardticket' element={<CardTicket />} />
+          <Route path='/creditcard' element={<Creditcard />} />
+          <Route path='/formsedit/:id' element={<Forms_edit />} />
+          <Route path='/formsadd' element={<Forms_edit />} />
+          <Route path='/edit-concert/:id' element={<FormConcert />} />
+          <Route path='/create-concert' element={<FormConcert />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

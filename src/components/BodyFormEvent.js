@@ -91,7 +91,9 @@ const EventForm = () => {
                 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
                 <h2>
                     <Link to="/shows"><i className='bx bxs-chevrons-left'></i></Link>
-                    TicketMania <i className='bx bx-calendar-plus'></i>
+                    TicketMania 
+                    <Link to="/create-concert"><i className='bx bx-calendar-plus'></i></Link>
+                    
                 </h2>
                 <form onSubmit={handleSubmit} encType="multipart/form-data">
                     <div className="form-group-events">

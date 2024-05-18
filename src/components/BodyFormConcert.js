@@ -10,6 +10,7 @@ const BodyFormConcert = () => {
     const [capacityTotal, setCapacityTotal] = useState('');
     const [ticketsSold, setTicketsSold] = useState('');
     const [priceConcert, setPriceConcert] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -39,14 +40,15 @@ const BodyFormConcert = () => {
         e.preventDefault();
 
         const formData = {
-            event_id: eventId,
+            eventId: eventId,
             date: dateConcert,
             location: locationConcert,
-            capacity_total: capacityTotal,
-            tickets_sold: ticketsSold,
+            capacityTotal: capacityTotal,
+            ticketsSold: ticketsSold,
             price: priceConcert
         };
-
+        
+        console.log(formData);
         try {
             const token = localStorage.getItem('token');
             const config = {
@@ -55,18 +57,30 @@ const BodyFormConcert = () => {
                 }
             };
 
-            const url = `http://127.0.0.1:8000/api/v1/concerts/${id}`;
+            let url = `http://127.0.0.1:8000/api/v1/concerts`;
+            let method = 'post';
 
-            const response = await axios.put(url, formData, config);
-            console.log('Concert updated:', response.data);
+            if (id) {
+                url = `http://127.0.0.1:8000/api/v1/concerts/${id}`;
+                method = 'put';
+            }
+
+            const response = await axios({
+                method: method,
+                url: url,
+                data: formData,
+                ...config
+            });
+
+            console.log('Concert saved:', response.data);
             console.log("Se ha actualizado con éxito");
             navigate('/shows');
         } catch (error) {
-            console.error('Error updating concert:', error);
+            console.error('Error saving concert:', error);
+            setErrorMessage('Error saving concert.');
             if (error.response) {
                 console.error('Response data:', error.response.data);
-                console.error('Response status:', error.response.status);
-                console.error('Response headers:', error.response.headers);
+                setErrorMessage(error.response.data.message);
             } else if (error.request) {
                 console.error('No response was received:', error.request);
             } else {
@@ -95,7 +109,7 @@ const BodyFormConcert = () => {
                     <div className="form-group-events">
                         <label htmlFor="date_concert">Date:</label>
                         <input
-                            type="date"
+                            type="datetime-local"
                             id="date_concert"
                             name="date_concert"
                             value={dateConcert}
@@ -150,7 +164,8 @@ const BodyFormConcert = () => {
                             required
                         />
                     </div>
-                    <button className="btn-events" type="submit">Enviar</button>
+                    <button className="btn-events" type="submit">{id ? 'Update Concert' : 'Create Concert'}</button>
+                    {errorMessage && <p className="error">{errorMessage}</p>}
                 </form>
             </div>
         </div>
