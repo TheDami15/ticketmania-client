@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { getConcerts } from '../services/EventService'; // Import the getConcerts function
 import '../styles/BodyFormEvent.css';
 
 const EventForm = () => {
@@ -8,6 +9,7 @@ const EventForm = () => {
     const [description, setDescription] = useState('');
     const [imageCover, setImageCover] = useState(null);
     const [imageBackground, setImageBackground] = useState(null);
+    const [concerts, setConcerts] = useState([]); // State to store concerts
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -27,8 +29,18 @@ const EventForm = () => {
             }
         };
 
+        const fetchConcertData = async () => {
+            try {
+                const concertData = await getConcerts(id);
+                setConcerts(concertData.data);
+            } catch (error) {
+                console.error('Error fetching concert data:', error);
+            }
+        };
+
         if (id) {
             fetchEventData();
+            fetchConcertData();
         }
     }, [id]);
 
@@ -101,17 +113,15 @@ const EventForm = () => {
                         <input type="file" id="image_background" name="image_background" accept="image/*" onChange={(e) => setImageBackground(e.target.files[0])} required />
                     </div>
                     <button className="btn-events" type="submit">{id ? 'Update Event' : 'Create Event'}</button>
-                    <div class="ul-events">
+                    <div className="ul-events">
                         <ul>
-                            <li>"date": "2024-05-09 23:52:23"
-                                <a href="/index2.html"><i class='bx bxs-edit'></i></a>
-                                <i class='bx bxs-message-x' ></i>
-                            </li>
-                            <li>"date": "2024-05-09 23:52:23"
-                                <a href="/index2.html"><i class='bx bxs-edit'></i></a>
-                                <i class='bx bxs-message-x' ></i>
-                            </li>
-
+                            {concerts.map((concert) => (
+                                <li key={concert.id}>
+                                    {`in ${concert.location} at ${new Date(concert.date).toLocaleString()}`}
+                                    <a href={`/edit-concert/${concert.id}`}><i className='bx bxs-edit'></i></a>
+                                    <i className='bx bxs-message-x'></i>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </form>
