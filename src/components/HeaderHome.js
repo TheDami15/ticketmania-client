@@ -21,12 +21,13 @@ const HeaderHome = () => {
 
       <ul className={`navbar ${menuOpen ? 'show' : ''}`}>
         <li><Link to="/" onClick={toggleMenu}>HOME</Link></li>
-        <li><Link to="/shows" onClick={toggleMenu}>SHOWS</Link></li>
-        
+        {isLoggedIn() && (
+          <li><Link to="/shows" onClick={toggleMenu}>SHOWS</Link></li>
+        )}
         {isLoggedIn() ? (
-          <li><Link to="/myticket" onClick={toggleMenu}>MYTICKET</Link></li> // Show this if logged in
+          <li><Link to="/myticket" onClick={toggleMenu}>MYTICKET</Link></li>
         ) : (
-          <li><Link to="/form" onClick={toggleMenu}>LOG IN</Link></li> // Show this if not logged in
+          <li><Link to="/form" onClick={toggleMenu}>LOG IN</Link></li>
         )}
       </ul>
     </header>

@@ -150,3 +150,8 @@
 .ul-events ul li:last-child {
     margin-bottom: 0;
 }
+
+.container-form-events img{
+    width: 100px;
+    height: 100px;
+}

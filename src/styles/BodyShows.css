@@ -97,16 +97,21 @@
 }
 
 .card__data_shows .bxs-edit{
-  font-size: 0.8rem;
+  font-size: 1.5rem;
   color: #6eff51;
-
-
+}
+.card__data_shows button{
+  background-color: transparent;
+  border: none;
 }
 .card__data_shows .bxs-plus-square{
-  font-size: 0.8rem;
-  color: #6eff51;
-
-
+  font-size: 1.5rem;
+  color: #a2a404f8;
+  transition: 0.3s;
+}
+.card__data_shows .bxs-plus-square:hover{
+  scale: 1.2;
+  color: #d0ff00;
 }
 
 .card__button_shows {
