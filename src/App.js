@@ -20,6 +20,7 @@ function App() {
           <Route path='/cardticket' Component={CardTicket}></Route>
           <Route path='/creditcard' Component={Creditcard}></Route>
           <Route path='/formsedit/:id' Component={Forms_edit}></Route>
+          <Route path='/edit-concert/:id' Component={FormConcert}></Route>
           <Route path='/formsadd' Component={Forms_edit}></Route>
           
           <Route path='/formseditconcert' Component={FormConcert}></Route>
