@@ -61,7 +61,7 @@ const BodyShows = () => {
     };
 
     const handleAddClick = (eventId) => {
-        navigate(`/formsadd?id=${eventId}`);
+        navigate(`/formsadd`);
     };
 
     if (error) {
@@ -99,11 +99,12 @@ const BodyShows = () => {
                         </article>
                     ))}
                 </div>
-            </div>
-            <div className="pagination_buttons">
+                <div className="pagination_buttons">
                 <button onClick={handlePreviousPage} disabled={currentPage === 1}>Previous</button>
                 <button onClick={handleNextPage} disabled={currentPage === totalPages}>Next</button>
             </div>
+            </div>
+            
         </div>
         
     );

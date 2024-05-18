@@ -101,6 +101,19 @@ const EventForm = () => {
                         <input type="file" id="image_background" name="image_background" accept="image/*" onChange={(e) => setImageBackground(e.target.files[0])} required />
                     </div>
                     <button className="btn-events" type="submit">{id ? 'Update Event' : 'Create Event'}</button>
+                    <div class="ul-events">
+                        <ul>
+                            <li>"date": "2024-05-09 23:52:23"
+                                <a href="/index2.html"><i class='bx bxs-edit'></i></a>
+                                <i class='bx bxs-message-x' ></i>
+                            </li>
+                            <li>"date": "2024-05-09 23:52:23"
+                                <a href="/index2.html"><i class='bx bxs-edit'></i></a>
+                                <i class='bx bxs-message-x' ></i>
+                            </li>
+
+                        </ul>
+                    </div>
                 </form>
             </div>
         </div>
