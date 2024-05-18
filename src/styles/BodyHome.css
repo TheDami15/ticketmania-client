@@ -296,3 +296,88 @@
         font-size: 30px;
     }
 }
+@media screen and (max-width: 1024px) {
+    .carousel {
+        height: 100vh;
+    }
+
+    .carousel .list .item .content {
+        width: 90%;
+        padding: 20px;
+        top: 15%;
+    }
+
+    .carousel .list .item .content .title {
+        font-size: 3em;
+    }
+
+    .carousel .list .item .content .des {
+        font-size: 1.5em;
+    }
+
+    .thumbnail .item {
+        width: 120px;
+        height: 180px;
+    }
+
+    .arrows {
+        top: 85%;
+        right: 45%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .carousel .list .item .content {
+        width: 95%;
+        padding: 15px;
+        top: 320px;
+    }
+
+    .carousel .list .item .content .title {
+        font-size: 2em;
+    }
+
+    .carousel .list .item .content .des {
+        font-size: 1.2em;
+    }
+
+    .thumbnail .item {
+        width: 100px;
+        height: 150px;
+    }
+
+    .arrows {
+        top: 90%;
+        right: 60%;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    .carousel .list .item .content {
+        width: 100%;
+        padding: 10px;
+        top: 320px;
+    }
+
+    .carousel .list .item .content .title {
+        font-size: 1.5em;
+    }
+
+    .carousel .list .item .content .des {
+        font-size: 1em;
+    }
+
+    .thumbnail .item {
+        width: 80px;
+        height: 120px;
+        
+    }
+
+    .arrows {
+        top: 90%;
+        right: 60%;
+
+    }
+
+}
