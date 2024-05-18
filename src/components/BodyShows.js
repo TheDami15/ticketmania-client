@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getEvents } from '../services/EventService';
+import { getEvents, deleteEvent } from '../services/EventService';
 import { getUserData } from '../services/AuthService';
 import "../styles/BodyShows.css";
 
@@ -63,6 +63,16 @@ const BodyShows = () => {
     const handleAddClick = (eventId) => {
         navigate(`/formsadd`);
     };
+    
+    const handleDeleteClick = async (eventId) => {
+        try {
+            await deleteEvent(eventId);
+            console.log('Event deleted successfully');
+            navigate('/');
+        } catch (error) {
+            console.error('Error deleting event:', error.message);
+        }
+    };
 
     if (error) {
         return <div className="error">Error: {error}</div>;
@@ -74,9 +84,9 @@ const BodyShows = () => {
 
     return (
 
-     
+
         <div className="forma_shows">
-            
+
             <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
             <div className="container_shows">
                 <div className="card__container_shows">
@@ -90,23 +100,26 @@ const BodyShows = () => {
                                     <button onClick={() => handleEventClick(event.id)} className="card__button_shows">Buy Ticket</button>
                                 )}
                                 {user && user.is_admin === true && (
-                                <button onClick={() => handleEditClick(event.id)}><i className='bx bxs-edit'></i></button>
+                                    <button onClick={() => handleEditClick(event.id)}><i className='bx bxs-edit'></i></button>
                                 )}
                                 {user && user.is_admin === true && (
-                                <button onClick={() => handleAddClick(event.id)}><i className='bx bxs-plus-square'></i></button>
+                                    <button onClick={() => handleAddClick(event.id)}><i className='bx bxs-plus-square'></i></button>
                                 )}
-                                </div>
+                                {user && user.is_admin === true && (
+                                    <button onClick={() => handleDeleteClick(event.id)}><i className='bx bxs-message-alt-minus'></i></button>
+                                )}
+                            </div>
                         </article>
                     ))}
                 </div>
                 <div className="pagination_buttons">
-                <button onClick={handlePreviousPage} disabled={currentPage === 1}>Previous</button>
-                <button onClick={handleNextPage} disabled={currentPage === totalPages}>Next</button>
+                    <button onClick={handlePreviousPage} disabled={currentPage === 1}>Previous</button>
+                    <button onClick={handleNextPage} disabled={currentPage === totalPages}>Next</button>
+                </div>
             </div>
-            </div>
-            
+
         </div>
-        
+
     );
 };
 

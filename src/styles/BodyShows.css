@@ -113,7 +113,15 @@
   scale: 1.2;
   color: #d0ff00;
 }
-
+.card__data_shows .bxs-message-alt-minus{
+  font-size: 1.5rem;
+  color: #e35429f8;
+  transition: 0.3s;
+}
+.card__data_shows .bxs-message-alt-minus:hover{
+  scale: 1.2;
+  color: #b94e2ef8;
+}
 .card__button_shows {
   text-decoration: none;
   font-size: var(--small-font-size);
