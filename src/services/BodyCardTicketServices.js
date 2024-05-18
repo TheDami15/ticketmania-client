@@ -1,5 +1,5 @@
 // src/services/BodyCardTicketServices.js
-const formNavigation = () => {
+const formNavigation = (concertId, tickets) => {
   const nextButton = document.querySelector('.btn-next');
   const prevButton = document.querySelector('.btn-prev');
   const steps = document.querySelectorAll('.step');
@@ -13,7 +13,7 @@ const formNavigation = () => {
 
   nextButton.addEventListener('click', () => {
     if (active === 2) {
-      window.location.href = "/creditcard"; // Redirigir a otra página
+      window.location.href = `/creditcard?concertId=${concertId}&tickets=${tickets}`; // Redirigir a otra página
       return;
     }
     active++;

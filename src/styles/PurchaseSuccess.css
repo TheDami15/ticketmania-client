@@ -1,0 +1,39 @@
+/* src/styles/PurchaseSuccess.css */
+.success-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f0f8ff;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .success-container h1 {
+    font-size: 2.5em;
+    color: #4caf50;
+    margin-bottom: 20px;
+  }
+  
+  .success-container p {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 40px;
+  }
+  
+  .success-container button {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .success-container button:hover {
+    background-color: #45a049;
+  }
+  
