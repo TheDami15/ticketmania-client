@@ -4,6 +4,8 @@ import Shows from "./pages/Shows.js";
 import Myticket from "./pages/Myticket.js";
 import CardTicket from "./pages/CardTicket.js";
 import Creditcard from "./components/BodyCreditCard";
+import Forms_edit from "./pages/Forms_edit.js";
+import FormConcert from "./components/BodyFormConcert.js";
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 function App() {
@@ -17,6 +19,8 @@ function App() {
           <Route path='/myticket' Component={Myticket}></Route>
           <Route path='/cardticket' Component={CardTicket}></Route>
           <Route path='/creditcard' Component={Creditcard}></Route>
+          <Route path='/formsedit' Component={Forms_edit}></Route>
+          <Route path='/formseditconcert' Component={FormConcert}></Route>
       </Routes>
     </div>
   </Router>

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate } from 'react-router-dom';
 import { getEvents } from '../services/EventService';
 import "../styles/BodyShows.css";
+
 
 const BodyShows = () => {
     const [events, setEvents] = useState([]);
@@ -60,8 +61,10 @@ const BodyShows = () => {
                             <div className="card__data_shows">
                                 <span className="card__description_shows">JUNE 20</span>
                                 <h2 className="card__title_shows">{event.name}</h2>
-                                <a href="#" className="card__button_shows">Read More</a>
-                                <a href='#'><i className='bx bxs-edit'></i></a>
+                                <Link to="/cardticket" className="card__button_shows">Read More</Link>
+                                <Link to='/formsedit'><i className='bx bxs-edit'></i></Link>
+                                <Link to='/formsedit'><i class='bx bxs-plus-square'></i></Link>
+                                
                             </div>
                         </article>
                     ))}

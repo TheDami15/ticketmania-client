@@ -52,6 +52,7 @@
 }
 
 .card__article_shows {
+
   position: relative;
   overflow: hidden;
 }
@@ -65,7 +66,7 @@
 }
 
 .card__data_shows {
-  width: 140px;
+
 
   background-image: url(/src/img/card_background3.png);
   /* background-color: black; */
@@ -95,10 +96,17 @@
   margin-bottom: .75rem;
 }
 
-.card__data_shows i{
-  font-size: 1.5rem;
-  color: #ffff;
-  padding-left: 102px;
+.card__data_shows .bxs-edit{
+  font-size: 0.8rem;
+  color: #6eff51;
+
+
+}
+.card__data_shows .bxs-plus-square{
+  font-size: 0.8rem;
+  color: #6eff51;
+
+
 }
 
 .card__button_shows {
