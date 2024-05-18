@@ -16,10 +16,10 @@ const HeaderHome = () => {
 
       <ul className="navbar">
         <li><Link to="/">HOME</Link></li>
-        <li><a href="/shows">SHOWS</a></li>
+        <li><Link to="/shows">SHOWS</Link></li>
         
         {isLoggedIn() ? (
-          <li><a href="/myticket">MYTICKET</a></li> // Show this if logged in
+          <li><Link to="/myticket">MYTICKET</Link></li> // Show this if logged in
         ) : (
           <li><Link to="/form">LOG IN</Link></li> // Show this if not logged in
         )}
