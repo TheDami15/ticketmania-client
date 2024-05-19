@@ -312,3 +312,13 @@ input::-webkit-inner-spin-button{
         align-items: flex-end;
     }
 }
+.card-expiry-element {
+    width: 100% !important;
+    font-weight: 500 !important;
+    font-size: 20px !important;
+    padding: 0.5em !important;
+    line-height: 44px !important;
+    border-radius: 8px !important;
+    border: 2px solid #6e6e76 !important;
+  }
+  

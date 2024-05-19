@@ -57,7 +57,7 @@ html{
 .form-box-ticket{
     display: flex;
     flex-direction: column;
-    margin-top: 5em;
+    margin-top: 0;
     border: 8px solid #4d4440;
     border-radius: 15px;
     background-color: #665a55df;
@@ -204,7 +204,7 @@ html{
     animation: fadeIn .6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 #form-card > div.active {
-    margin-bottom: 2em;
+    margin-bottom: 1em;
     display: block;
 }
 
