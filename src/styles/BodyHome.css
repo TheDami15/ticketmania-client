@@ -381,3 +381,80 @@
     }
 
 }
+.event-list .item {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.event-list .item:hover {
+    transform: translateY(-10px);
+}
+
+.event-list .item img {
+    width: 100%;
+    height: auto;
+}
+
+.event-list .content {
+    padding: 20px;
+}
+
+.event-list .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.event-list .topic {
+    font-size: 18px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.event-list .author {
+    font-size: 14px;
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+.event-list .des {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.event-list .buttons {
+    text-align: right;
+}
+
+.event-list .buttons button {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 10px; /* Add margin between buttons */
+}
+
+.event-list .buttons button:hover {
+    background-color: #0056b3;
+}
+
+.event-list .buttons .link-button {
+    text-decoration: none;
+    color: inherit;
+}
+
+.button-see-more .link-button,
+.button-log-in .link-button {
+    color: black; /* Set text color to black for SEE MORE and LOG IN buttons */
+}
+
+.button-my-ticket .link-button {
+    color: white; /* Set text color to white for My Ticket button */
+}

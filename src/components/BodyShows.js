@@ -63,7 +63,7 @@ const BodyShows = () => {
     const handleAddClick = (eventId) => {
         navigate(`/formsadd`);
     };
-    
+
     const handleDeleteClick = async (eventId) => {
         try {
             await deleteEvent(eventId);
@@ -100,17 +100,18 @@ const BodyShows = () => {
                                     <button onClick={() => handleEventClick(event.id)} className="card__button_shows">Buy Ticket</button>
                                 )}
                                 {user && user.is_admin === true && (
-                                    <button onClick={() => handleEditClick(event.id)}><i className='bx bxs-edit'></i></button>
+                                    <button onClick={() => handleEditClick(event.id)} className="icon-button"><i className='bx bxs-edit'></i></button>
                                 )}
                                 {user && user.is_admin === true && (
-                                    <button onClick={() => handleAddClick(event.id)}><i className='bx bxs-plus-square'></i></button>
+                                    <button onClick={() => handleAddClick(event.id)} className="icon-button"><i className='bx bxs-plus-square'></i></button>
                                 )}
                                 {user && user.is_admin === true && (
-                                    <button onClick={() => handleDeleteClick(event.id)}><i className='bx bxs-message-alt-minus'></i></button>
+                                    <button onClick={() => handleDeleteClick(event.id)} className="icon-button"><i className='bx bxs-message-alt-minus'></i></button>
                                 )}
                             </div>
                         </article>
                     ))}
+
                 </div>
                 <div className="pagination_buttons">
                     <button onClick={handlePreviousPage} disabled={currentPage === 1}>Previous</button>

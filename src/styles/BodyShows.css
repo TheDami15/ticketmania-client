@@ -148,6 +148,7 @@
   50% {
     transform: translateY(-10rem);
   }
+
   100% {
     transform: translateY(-7rem);
   }
@@ -164,10 +165,12 @@
     transform: translateY(-7rem);
     opacity: 0.9;
   }
+
   50% {
     transform: translateY(-10rem);
     opacity: 0.5;
   }
+
   100% {
     transform: translateY(.5rem);
     opacity: 0;
@@ -179,6 +182,7 @@
     overflow: initial;
     pointer-events: none;
   }
+
   50% {
     overflow: hidden;
   }
@@ -202,6 +206,7 @@
     50% {
       transform: translateY(-8rem);
     }
+
     100% {
       transform: translateY(-5rem);
     }
@@ -212,10 +217,12 @@
       transform: translateY(-5rem);
       opacity: 0.9;
     }
+
     50% {
       transform: translateY(-8rem);
       opacity: 0.5;
     }
+
     100% {
       transform: translateY(.5rem);
       opacity: 0;
@@ -248,3 +255,14 @@
     padding-inline: 2.5rem;
   }
 }
+/* ESTILOS */
+
+
+.icon-button {
+  border: none;
+  background: none;
+  color: #007bff;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+

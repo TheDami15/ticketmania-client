@@ -40,17 +40,24 @@ const BodyHome = () => {
                             <div className="des">{event.description}</div>
                             <div className="buttons">
                                 {isLoggedIn() && (
-                                    <button><Link to="/cardticket">SEE MORE</Link></button>
+                                    <button className="button-see-more">
+                                        <Link to={`/cardticket?id=${event.id}`} className="link-button">SEE MORE</Link>
+                                    </button>
                                 )}
                                 {isLoggedIn() ? (
-                                    <button><Link to="/myticket">My Ticket</Link></button> // Show this if logged in
+                                    <button className="button-my-ticket">
+                                        <Link to="/myticket" className="link-button">My Ticket</Link>
+                                    </button>
                                 ) : (
-                                    <button><Link to="/form">LOG IN</Link></button> // Show this if not logged in
+                                    <button className="button-log-in">
+                                        <Link to="/form" className="link-button">LOG IN</Link>
+                                    </button>
                                 )}
                             </div>
                         </div>
                     </div>
                 ))}
+
             </div>
             <div className="thumbnail">
                 {events.map(event => (
