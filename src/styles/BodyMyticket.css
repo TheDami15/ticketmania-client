@@ -191,3 +191,52 @@
     padding-inline: 2rem;
   }
 }
+
+/* TICKETS */
+
+.forma_ticket .ticket-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.forma_ticket .ticket-item {
+  background-color: rgba(0, 0, 0, 0.75); /* Dark barely transparent background */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  margin: 10px 0;
+  padding: 15px;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  color: #fff; /* White text for contrast */
+  position: relative;
+  transition: transform 0.2s;
+}
+
+.forma_ticket .ticket-item:hover {
+  transform: scale(1.02);
+}
+
+.forma_ticket .ticket-item:before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  width: 30px;
+  height: 10px;
+  background-color: #333;
+  border-radius: 2px 2px 0 0;
+  z-index: -1;
+}
+
+.forma_ticket .tickets {
+  text-align: center; /* Center-align the entire tickets section */
+  margin-top: 20px;
+}
+
+.forma_ticket .tickets h3 {
+  text-align: center; /* Center-align the h3 element */
+  margin-bottom: 20px;
+  color: #fff;
+  font-size: 24px;
+}

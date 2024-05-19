@@ -85,12 +85,12 @@ const BodyMyticket = () => {
    return (
       <div className="forma_ticket">
          <div className="container">
-         {/* Display user's tickets */}
-         <div className="tickets">
+            {/* Display user's tickets */}
+            <div className="tickets">
                <h3>Your Tickets</h3>
-               <ul>
+               <ul className="ticket-list">
                   {tickets.map(ticket => (
-                     <li key={ticket.id}>
+                     <li key={ticket.id} className="ticket-item">
                         Concert of {ticket.event.data.name} at {new Date(ticket.concert.data.date).toLocaleString()}
                      </li>
                   ))}
