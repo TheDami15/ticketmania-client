@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Platypi:ital,wght@0,300..800;1,300..800&family=Sedan:ital@0;1&display=swap');
 
-
 *,::before,::after{
     box-sizing: border-box;
 }
@@ -9,15 +8,14 @@ html{
 }
 .site-credit{
     position: absolute;
-    margin-top: 0em;
+    margin-top: 0;
     height: 100vh;
-    width: 187vh;
+    width: 100vw;
     font-family: 'Platypi', sans-serif;
     font-size: 12px;
     font-weight: 300;
     line-height: 1.8;
     color: black;
-    /* background: #5e5050; */
     background-image: url(../img/shows_background.png);
     margin: 0;
     padding: 0;
@@ -38,7 +36,6 @@ html{
     max-width: 100%;
     vertical-align: middle;
 }
-
 strong {
     font-weight: 800;
 }
@@ -48,7 +45,7 @@ input::-webkit-inner-spin-button{
     margin: 0;
 }
 .container-credit{
-    margin-top: 0em;
+    margin-top: 0;
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 1em;
@@ -57,16 +54,17 @@ input::-webkit-inner-spin-button{
     margin-top: 5em;
     background-color: white;
     border-radius: 1.8em;
-    padding: 4em 2em;
+    padding: 2em 1em;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 .header-credit{
-    margin-bottom: 4em;
+    margin-bottom: 2em;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 .header-credit .logo-credit{
-    font-size: 3em;
+    font-size: 2em;
     color: #000000;
 }
 .header-credit .logo-credit strong {
@@ -77,19 +75,18 @@ input::-webkit-inner-spin-button{
     flex-direction: column;
     align-items: end;
     line-height: 1.2;
-    font-size: 1.8em;
+    font-size: 1.2em;
 }
-
 .payment, .payment :where(form > div:not(.card-number), .card-expiration .input-credit){
     display: flex;
     align-items: center;
 }
 .payment{
-    flex-direction: column-reverse;
-    gap: 4em;
+    flex-direction: column;
+    gap: 2em;
 }
 .payment form > div{
-    margin-bottom: 2.5em;
+    margin-bottom: 1.5em;
     flex-direction: column;
     align-items: stretch;
 }
@@ -98,23 +95,22 @@ input::-webkit-inner-spin-button{
     margin: 0.5em 0;
 }
 .payment .left p{
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
 }
 .payment .left span {
     color: #6e6e76;
-    font-size: 15px;
+    font-size: 14px;
 }
 .payment .left input{
     font-weight: 500;
-    font-size: 20px;
+    font-size: 16px;
     padding: 0 1em;
     line-height: 44px;
     border-radius: 8px;
     width: 100%;
     border: 2px solid #6e6e76;
     outline-color: transparent;
-    -webkit-transition: all .3s ease-out;
     transition: all .3s ease-out;
 }
 .payment .left input::placeholder{
@@ -167,16 +163,15 @@ input::-webkit-inner-spin-button{
     text-align: center;
 }
 .payment form button{
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     border: 0;
     background-color: red;
     color: white;
-    line-height: 56px;
+    line-height: 44px;
     border-radius: 8px;
     width: 100%;
     cursor: pointer;
-    -webkit-transition: all .3s ease-out;
     transition: all .3s ease-out;
 }
 .payment form button:hover{
@@ -191,7 +186,7 @@ input::-webkit-inner-spin-button{
     margin: 0 2em -5em;
     padding: 2em;
     line-height: 2em;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 600;
     color: white;
     background-color: #434249;
@@ -212,7 +207,7 @@ input::-webkit-inner-spin-button{
     display: flex;
     justify-content: end;
     align-items: center;
-    margin: 0 -1,5em -1.5em;
+    margin: 0 -1.5em -1.5em;
     opacity: .5;
 }
 .payment .chip svg{
@@ -256,35 +251,63 @@ input::-webkit-inner-spin-button{
     font-size: 1.5em;
 }
 
-
+@media screen and (max-width: 576px) {
+    .outer-credit {
+        padding: 2em 1em;
+    }
+    .header-credit .logo-credit {
+        font-size: 1.5em;
+    }
+    .header-credit .time-left {
+        font-size: 1em;
+    }
+    .payment .right {
+        max-width: 100%;
+        margin-top: 2em;
+    }
+    .payment .card-virtual {
+        margin: 0 1em -3em;
+        padding: 1em;
+        font-size: 14px;
+    }
+    .payment .right .receipt {
+        padding: 4em 1em 1em;
+    }
+    .payment .right .receipt ul li {
+        line-height: 2em;
+    }
+    .payment .receipt .total .price {
+        font-size: 1.2em;
+    }
+}
 
 @media screen and (min-width: 576px){
-    .outer{
+    .outer-credit {
         padding: 4em;
     }
-    .payment form > div{
+    .payment form > div {
         flex-direction: row;
     }
-    .payment form > div .text{
+    .payment form > div .text {
         padding-right: 1em;
     }
 }
 
 @media screen and (min-width: 992px){
-    .header-credit{
+    .header-credit {
         max-width: 70%;
         padding-right: 4em;
         margin-bottom: 0;
     }
-    .payment{
+    .payment {
         flex-direction: row;
         gap: 0;
     }
-    .payment .left{
+    .payment .left {
         flex: 1 0 65%;
         padding-right: 4em;
     }
-    .payment .right{
+    .payment .right {
         flex: 1 0 35%;
         align-items: flex-end;
     }
