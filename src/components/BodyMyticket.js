@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../styles/BodyMyticket.css";
 import { getUserData, logout } from '../services/AuthService';
+import { getUserTickets, getConcertById, getEventById } from '../services/TicketService';
 import imagecard1 from '../img/icon_hamilton.png';
 import imagecard2 from '../img/icon_falsettos.png';
 import imagecard3 from '../img/icon_hairsprey.png';
@@ -11,6 +12,7 @@ import imagecard6 from '../img/icon_wicked.png';
 
 const BodyMyticket = () => {
    const [user, setUser] = useState(null);
+   const [tickets, setTickets] = useState([]); // State to store tickets
    const [error, setError] = useState(null);
    const navigate = useNavigate();
 
@@ -35,7 +37,31 @@ const BodyMyticket = () => {
          }
       };
 
+      const fetchUserTickets = async () => {
+         try {
+            const ticketData = await getUserTickets();
+            console.log("ticketData", ticketData)
+            const detailedTickets = await Promise.all(ticketData.data.map(async (ticket) => {
+               console.log("entra");
+               const concertData = await getConcertById(ticket.concertId);
+               console.log("concertData todo", concertData);
+               const eventData = await getEventById(concertData.data.eventId);
+               console.log("eventData", concertData.eventId);
+               return {
+                  ...ticket,
+                  concert: concertData,
+                  event: eventData
+               };
+            }));
+            console.log("detailed", detailedTickets);
+            setTickets(detailedTickets);
+         } catch (err) {
+            setError(err.message);
+         }
+      };
+
       fetchUserData();
+      fetchUserTickets();
    }, []);
 
    const handleLogout = async (e) => {
@@ -59,6 +85,17 @@ const BodyMyticket = () => {
    return (
       <div className="forma_ticket">
          <div className="container">
+         {/* Display user's tickets */}
+         <div className="tickets">
+               <h3>Your Tickets</h3>
+               <ul>
+                  {tickets.map(ticket => (
+                     <li key={ticket.id}>
+                        Concert of {ticket.event.data.name} at {new Date(ticket.concert.data.date).toLocaleString()}
+                     </li>
+                  ))}
+               </ul>
+            </div>
             <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
             <article className="card__article">
                <div className="card__profile">
